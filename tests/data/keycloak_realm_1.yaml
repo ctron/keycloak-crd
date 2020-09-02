@@ -1,0 +1,23 @@
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakRealm
+metadata:
+  name: example-keycloakrealm
+  namespace: keycloak-operator
+  finalizers:
+    - realm.cleanup
+  labels:
+    app: sso
+spec:
+  instanceSelector:
+    matchLabels:
+      app: sso
+  realm:
+    displayName: Basic Realm
+    enabled: true
+    id: basic
+    realm: basic
+status:
+  loginURL: ''
+  message: ''
+  phase: reconciling
+  ready: true
