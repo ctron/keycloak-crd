@@ -12,7 +12,6 @@
  */
 
 use k8s_openapi::api::core::v1::ResourceRequirements;
-use k8s_openapi::Resource;
 use kube_derive::CustomResource;
 use serde::{Deserialize, Serialize};
 
@@ -22,6 +21,7 @@ use serde::{Deserialize, Serialize};
     version = "v1alpha1",
     kind = "Keycloak",
     namespaced,
+    derive = "Default",
     derive = "PartialEq",
     status = "KeycloakStatus"
 )]
@@ -41,18 +41,6 @@ pub struct KeycloakSpec {
     pub pod_disruption_budget: PodDisruptionBudget,
     pub postgres_deployment_spec: PostgresDeploymentSpec,
     pub storage_class_name: String,
-}
-
-impl Default for Keycloak {
-    fn default() -> Self {
-        Keycloak {
-            kind: Keycloak::KIND.into(),
-            api_version: Keycloak::API_VERSION.into(),
-            metadata: Default::default(),
-            spec: Default::default(),
-            status: Default::default(),
-        }
-    }
 }
 
 #[derive(Serialize, Deserialize, Default, Debug, Clone, PartialEq)]

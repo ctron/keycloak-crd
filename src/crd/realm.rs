@@ -13,7 +13,6 @@
 
 use crate::crd::{Client, User};
 use k8s_openapi::apimachinery::pkg::apis::meta::v1::LabelSelector;
-use k8s_openapi::Resource;
 use kube_derive::CustomResource;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
@@ -24,6 +23,7 @@ use std::collections::BTreeMap;
     version = "v1alpha1",
     kind = "KeycloakRealm",
     namespaced,
+    derive = "Default",
     derive = "PartialEq",
     status = "KeycloakRealmStatus"
 )]
@@ -32,18 +32,6 @@ use std::collections::BTreeMap;
 pub struct KeycloakRealmSpec {
     pub instance_selector: LabelSelector,
     pub realm: Realm,
-}
-
-impl Default for KeycloakRealm {
-    fn default() -> Self {
-        KeycloakRealm {
-            kind: KeycloakRealm::KIND.into(),
-            api_version: KeycloakRealm::API_VERSION.into(),
-            metadata: Default::default(),
-            spec: Default::default(),
-            status: Default::default(),
-        }
-    }
 }
 
 #[derive(Serialize, Deserialize, Default, Debug, Clone, PartialEq)]

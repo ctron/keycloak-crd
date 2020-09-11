@@ -12,17 +12,17 @@
  */
 
 use k8s_openapi::apimachinery::pkg::apis::meta::v1::LabelSelector;
-use k8s_openapi::Resource;
 use kube_derive::CustomResource;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
-#[derive(CustomResource, Serialize, Deserialize, Default, Debug, Clone, PartialEq)]
+#[derive(CustomResource, Serialize, Default, Deserialize, Debug, Clone, PartialEq)]
 #[kube(
     group = "keycloak.org",
     version = "v1alpha1",
     kind = "KeycloakClient",
     namespaced,
+    derive = "Default",
     derive = "PartialEq",
     status = "KeycloakClientStatus"
 )]
@@ -31,18 +31,6 @@ use std::collections::BTreeMap;
 pub struct KeycloakClientSpec {
     pub client: Client,
     pub realm_selector: LabelSelector,
-}
-
-impl Default for KeycloakClient {
-    fn default() -> Self {
-        KeycloakClient {
-            kind: KeycloakClient::KIND.into(),
-            api_version: KeycloakClient::API_VERSION.into(),
-            metadata: Default::default(),
-            spec: Default::default(),
-            status: Default::default(),
-        }
-    }
 }
 
 #[derive(Serialize, Deserialize, Default, Debug, Clone, PartialEq)]
