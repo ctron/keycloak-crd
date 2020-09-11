@@ -3,10 +3,10 @@
 [![Crates.io](https://img.shields.io/crates/v/keycloak-crd.svg)](https://crates.io/crates/keycloak-crd)
 ![CI](https://github.com/ctron/keycloak-crd/workflows/CI/badge.svg)
 
-This repository contains Rust types, for working with they Keycloak CRDs from the
+This repository contains Rust types, for working with the CRDs from the
 [Keycloak operator](https://github.com/keycloak/keycloak-operator).
 
-[Keycloak](https://www.keycloak.org/) is an open source identity and access management solution.
+> [Keycloak](https://www.keycloak.org/) is an open source identity and access management solution.
 
 ## Usage
 
